@@ -15,7 +15,7 @@ class MailSender:
         with open(path, "r", encoding="utf-8") as f:
             return json.load(f)
 
-    def load_template(self, user_data, template_path="../../../template/mail.html"):
+    def load_template(self, user_data, template_path="../../../templates/mail.html"):
         full_path = os.path.join(os.path.dirname(__file__), template_path)
         with open(full_path, "r", encoding="utf-8") as file:
             raw_template = Template(file.read())
