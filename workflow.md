@@ -3,7 +3,7 @@
 title: Spear-Phishing
 ---
 flowchart TD
-    A[1- Lien sur le profil Linkedin/Github]
+    A[1- Lien sur le profil Github]
     B[2- Service de connexion SMTP]
     C["3- Génération du contenu du mail (IA)"]
     D["4- Création du fake Page Google Authentification"]

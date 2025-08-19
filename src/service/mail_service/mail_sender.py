@@ -23,7 +23,8 @@ class MailSender:
         return raw_template.substitute(
             name=user_data["name"],
             location=user_data["location"],
-            lang=user_data["top"])
+            lang=user_data["top"],
+            link=user_data["link"])
 
     def create_email(self, user_data):
         from_email = "recrutement@github.com"

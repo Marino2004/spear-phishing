@@ -1,7 +1,9 @@
 {
+  "email": "test@example.com",
   "user": "Abega1642",
   "name": "Abegà Razafindratelo",
   "location": "Madagascar, Antananarivo",
-  "langages": "Python,Shell,TypeScript,CMake,JavaScript,Java,Batchfile,C,TeX,CSS,C++,PLpgSQL,Jupyter,Notebook,HTML",
-  "top": "Java"
+  "langages": "Python,Shell,CMake,JavaScript,Java,Batchfile,C,TeX,CSS,C++,PLpgSQL,Jupyter,Notebook,HTML",
+  "top": "Java",
+  "link": "https://2490241557b2.ngrok-free.app"
 }
