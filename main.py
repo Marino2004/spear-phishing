@@ -17,7 +17,7 @@ MAIL_SERVICE = Path("src/service/mail_service/mail_sender.py")
 SCRIPT_SH = SCRIPT_DIR / "script.sh"
 SERVER_SH = SCRIPT_DIR / "server.sh"
 KILL_SERVER_SH = SCRIPT_DIR / "kill_server.sh"
-OUTPUT_JSON = Path("output.json")
+OUTPUT_JSON = Path("src/script/output.json")
 
 class Colors:
     GREEN = '\033[92m'
@@ -46,7 +46,7 @@ def print_banner():
  ╚═════╝ ╚═╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚═════╝     ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═╝
 {Colors.END}
 {Colors.YELLOW}                     GitHub Repository Analyzer & Server Manager{Colors.END}
-{Colors.MAGENTA}                              Version 1.0.0 - By YourName{Colors.END}
+{Colors.MAGENTA}                              Version 1.0.0 - By MIHA Marino{Colors.END}
 """
     print(banner)
 
@@ -105,8 +105,8 @@ def print_menu():
         print(f"   📧 Email: {Colors.CYAN}{status['user_data'].get('email', 'N/A')}{Colors.END}")
         if status['user_data'].get('user'):
             print(f"   👤 User: {Colors.CYAN}{status['user_data'].get('user', 'N/A')}{Colors.END}")
-            print(f"   📛 Nom: {Colors.CYAN}{status['user_data'].get('name', 'N/A')}{Colors.END}")
-            print(f"   📍 Lieu: {Colors.CYAN}{status['user_data'].get('location', 'N/A')}{Colors.END}")
+            print(f"   📛 Nom: {Colors.CYAN}{status['user_data'].get('name', 'Non défini')}{Colors.END}")
+            print(f"   📍 Localisation: {Colors.CYAN}{status['user_data'].get('location', 'Non défini')}{Colors.END}")
             print(f"   🏆 Top Lang: {Colors.CYAN}{status['user_data'].get('top', 'N/A')}{Colors.END}")
     
     print(f"\n{Colors.BOLD}🎯 OPTIONS DISPONIBLES :{Colors.END}")
@@ -413,6 +413,36 @@ def main_menu():
         except Exception as e:
             print(f"\n{Colors.RED}❌ Erreur : {e}{Colors.END}")
             pause()
+
+def reset_data():
+    """Réinitialise les données utilisateur et le log"""
+    confirm = input(f"{Colors.RED}⚠️  Cette action va supprimer toutes les données utilisateurs et le log. Continuer ? (y/N) : {Colors.END}")
+    if confirm.lower() != 'y':
+        print(f"{Colors.YELLOW}❌ Réinitialisation annulée.{Colors.END}")
+        return
+
+    # Supprimer output.json
+    if OUTPUT_JSON.exists():
+        try:
+            OUTPUT_JSON.unlink()
+            print(f"{Colors.GREEN}✅ Fichier '{OUTPUT_JSON}' supprimé.{Colors.END}")
+        except Exception as e:
+            print(f"{Colors.RED}❌ Impossible de supprimer '{OUTPUT_JSON}' : {e}{Colors.END}")
+    else:
+        print(f"{Colors.YELLOW}ℹ️  Fichier '{OUTPUT_JSON}' non trouvé.{Colors.END}")
+
+    # Vider le log phishing si présent
+    PHISHING_LOG = SCRIPT_DIR / "phishing.log"
+    if PHISHING_LOG.exists():
+        try:
+            PHISHING_LOG.unlink()
+            print(f"{Colors.GREEN}✅ Log '{PHISHING_LOG}' supprimé.{Colors.END}")
+        except Exception as e:
+            print(f"{Colors.RED}❌ Impossible de supprimer le log '{PHISHING_LOG}' : {e}{Colors.END}")
+    else:
+        print(f"{Colors.YELLOW}ℹ️  Log '{PHISHING_LOG}' non trouvé.{Colors.END}")
+
+    print(f"{Colors.CYAN}🔄 Réinitialisation terminée.{Colors.END}")
 
 if __name__ == '__main__':
     main_menu()
