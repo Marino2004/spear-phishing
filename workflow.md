@@ -1,6 +1,6 @@
 ```mermaid
 ---
-title: Spear-Phishing
+title: PhishHub
 ---
 flowchart TD
     A[1- Lien sur le profil Github]
